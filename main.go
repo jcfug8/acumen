@@ -1,16 +1,17 @@
 package main
 
 import (
-	"gpt_micro_test/adapters/grpc/server"
-	"gpt_micro_test/domain"
 	"log"
 	"os"
 	"os/signal"
 	"sync"
 	"syscall"
 
-	grpcResource "gpt_micro_test/adapters/grpc/resource"
-	grpcUser "gpt_micro_test/adapters/grpc/user"
+	"github.com/jcfug8/acumen/adapters/grpc/server"
+	"github.com/jcfug8/acumen/domain"
+
+	grpcResource "github.com/jcfug8/acumen/adapters/grpc/resource"
+	grpcUser "github.com/jcfug8/acumen/adapters/grpc/user"
 )
 
 func main() {

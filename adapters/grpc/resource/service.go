@@ -1,7 +1,7 @@
 package resource
 
 import (
-	"gpt_micro_test/ports/resource"
+	"github.com/jcfug8/acumen/ports/resource"
 
 	"google.golang.org/grpc"
 )

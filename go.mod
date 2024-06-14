@@ -1,4 +1,4 @@
-module gpt_micro_test
+module github.com/jcfug8/acumen
 
 go 1.22.2
 

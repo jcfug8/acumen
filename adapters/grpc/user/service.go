@@ -1,7 +1,7 @@
 package user
 
 import (
-	"gpt_micro_test/ports/user"
+	"github.com/jcfug8/acumen/ports/user"
 
 	"google.golang.org/grpc"
 )

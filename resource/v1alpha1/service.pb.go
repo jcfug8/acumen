@@ -11,7 +11,7 @@ import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	fieldmaskpb "google.golang.org/protobuf/types/known/fieldmaskpb"
-	v1alpha1 "gpt_micro_test/resource/entities/v1alpha1"
+	v1alpha1 "github.com/jcfug8/acumen/resource/entities/v1alpha1"
 	reflect "reflect"
 	sync "sync"
 )
