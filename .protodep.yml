@@ -1,0 +1,16 @@
+out_dir: .
+auth:
+  - host: "github.com"
+    headers:
+languages:
+  - lang: go
+deps:
+  - name: local
+    dir: ./protos
+  - name: googleapis
+    url: https://github.com/googleapis/googleapis/archive/refs/tags/common-protos-1_3_1.zip
+    dont_generate: true
+    dirs:
+      - "google/api"
+    options:
+      go_package: google.golang.org/genproto/googleapis

@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package resource.entities.v1alpha1;
+
+message Resource {
+    string name = 1;
+}
+
+message SubResource {
+    string name = 1;
+}

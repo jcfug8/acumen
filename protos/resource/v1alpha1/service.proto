@@ -1,0 +1,154 @@
+syntax = "proto3";
+
+package resource.v1alpha1;
+
+import "resource/entities/v1alpha1/entities.proto";
+import "google/api/annotations.proto";
+import "google/protobuf/field_mask.proto";
+
+service ResourceAPI {
+  rpc ListResources(ListResourcesRequest) returns (ListResourcesResponse) {
+    option (google.api.http) = {
+      get: "/v1/{parent=user/*}/resource"
+    };
+  };
+  rpc GetResource(GetResourceRequest) returns (GetResourceResponse){
+    option (google.api.http) = {
+      get: "/v1/{name=user/*/resource/*}"
+    };
+  };
+  rpc CreateResource(CreateResourceRequest) returns (CreateResourceResponse){
+    option (google.api.http) = {
+      post: "/v1/{parent=user/*}/resources"
+      body: "resource"
+    };
+  };
+  rpc UpdateResource(UpdateResourceRequest) returns (UpdateResourceResponse){
+    option (google.api.http) = {
+      patch: "/v1/{resource.name=user/*/resource/*}"
+      body: "resource"
+    };
+  };
+  rpc DeleteResource(DeleteResourceRequest) returns (DeleteResourceResponse){
+    option (google.api.http) = {
+      delete: "/v1/{name=user/*/resource/*}"
+    };
+  };
+
+  rpc ListSubResources(ListSubResourcesRequest) returns (ListSubResourcesResponse) {
+    option (google.api.http) = {
+      get: "/v1/{parent=user/*/resource/*}/sub_resource"
+    };
+  };
+  rpc GetSubResource(GetSubResourceRequest) returns (GetSubResourceResponse){
+    option (google.api.http) = {
+      get: "/v1/{name=user/*/resource/*/sub_resource/*}"
+    };
+  };
+  rpc CreateSubResource(CreateSubResourceRequest) returns (CreateSubResourceResponse){
+    option (google.api.http) = {
+      post: "/v1/{parent=user/*/resource/*}/sub_resources"
+    };
+  };
+  rpc UpdateSubResource(UpdateSubResourceRequest) returns (UpdateSubResourceResponse){
+    option (google.api.http) = {
+      patch: "/v1/{sub_resource.name=user/*/resource/*/sub_resource/*}"
+    };
+  };
+  rpc DeleteSubResource(DeleteSubResourceRequest) returns (DeleteSubResourceResponse){
+    option (google.api.http) = {
+      delete: "/v1/{name=user/*/resource/*/sub_resource/*}"
+    };
+  };
+}
+
+
+message ListResourcesRequest {
+  string parent = 1;
+  google.protobuf.FieldMask field_mask = 2;
+}
+
+message ListResourcesResponse {
+  repeated resource.entities.v1alpha1.Resource resources = 1;
+}
+
+message GetResourceRequest {
+  string name = 1;
+  google.protobuf.FieldMask field_mask = 2;
+}
+
+message GetResourceResponse {
+  resource.entities.v1alpha1.Resource resource = 1;
+}
+
+message UpdateResourceRequest {
+  resource.entities.v1alpha1.Resource resource = 1;
+  google.protobuf.FieldMask field_mask = 2;
+}
+
+message CreateResourceRequest {
+  string parent = 1;
+  resource.entities.v1alpha1.Resource resource = 2;
+  google.protobuf.FieldMask field_mask = 3;
+}
+
+message CreateResourceResponse {
+  resource.entities.v1alpha1.Resource resource = 1;
+}
+
+message UpdateResourceResponse {
+  resource.entities.v1alpha1.Resource resource = 1;
+}
+
+message DeleteResourceRequest {
+  string name = 1;
+}
+
+message DeleteResourceResponse {
+}
+
+
+
+message ListSubResourcesRequest {
+  string parent = 1;
+  google.protobuf.FieldMask field_mask = 2;
+}
+
+message ListSubResourcesResponse {
+  repeated resource.entities.v1alpha1.SubResource sub_resources = 1;
+}
+
+message GetSubResourceRequest {
+  string name = 1;
+  google.protobuf.FieldMask field_mask = 2;
+}
+
+message GetSubResourceResponse {
+  resource.entities.v1alpha1.SubResource sub_resource = 1;
+}
+
+message UpdateSubResourceRequest {
+  resource.entities.v1alpha1.SubResource sub_resource = 1;
+  google.protobuf.FieldMask field_mask = 2;
+}
+
+message CreateSubResourceRequest {
+  string parent = 1;
+  resource.entities.v1alpha1.SubResource sub_resource = 2;
+  google.protobuf.FieldMask field_mask = 3;
+}
+
+message CreateSubResourceResponse {
+  resource.entities.v1alpha1.SubResource sub_resource = 1;
+}
+
+message UpdateSubResourceResponse {
+  resource.entities.v1alpha1.SubResource sub_resource = 1;
+}
+
+message DeleteSubResourceRequest {
+  string name = 1;
+}
+
+message DeleteSubResourceResponse {
+}

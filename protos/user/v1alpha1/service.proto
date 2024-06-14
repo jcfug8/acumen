@@ -1,0 +1,80 @@
+syntax = "proto3";
+
+package user.v1alpha1;
+
+import "user/entities/v1alpha1/entities.proto";
+import "google/api/annotations.proto";
+
+service UserAPI {
+  rpc ListUsers(ListUsersRequest) returns (ListUsersResponse) {
+    option (google.api.http) = {
+      get: "/v1/user"
+    };
+  };
+  rpc GetUser(GetUserRequest) returns (GetUserResponse){
+    option (google.api.http) = {
+      get: "/v1/{name=user/*}"
+    };
+  };
+  rpc CreateUser(CreateUserRequest) returns (CreateUserResponse){
+    option (google.api.http) = {
+      post: "/v1/user"
+      body: "user"
+    };
+  };
+  rpc UpdateUser(UpdateUserRequest) returns (UpdateUserResponse){
+    option (google.api.http) = {
+      patch: "/v1/{user.name=user/*}"
+      body: "user"
+    };
+  };
+  rpc DeleteUser(DeleteUserRequest) returns (DeleteUserResponse){
+    option (google.api.http) = {
+      delete: "/v1/{name=user/*}"
+    };
+  };
+}
+
+import "google/protobuf/field_mask.proto";
+
+message ListUsersRequest {
+  google.protobuf.FieldMask field_mask = 1;
+}
+
+message ListUsersResponse {
+  repeated user.entities.v1alpha1.User users = 1;
+}
+
+message GetUserRequest {
+  string name = 1;
+  google.protobuf.FieldMask field_mask = 2;
+}
+
+message GetUserResponse {
+  user.entities.v1alpha1.User user = 1;
+}
+
+message CreateUserRequest {
+  user.entities.v1alpha1.User user = 1;
+  google.protobuf.FieldMask field_mask = 2;
+}
+
+message CreateUserResponse {
+  user.entities.v1alpha1.User user = 1;
+}
+
+message UpdateUserRequest {
+  user.entities.v1alpha1.User user = 1;
+  google.protobuf.FieldMask field_mask = 2;
+}
+
+message UpdateUserResponse {
+  user.entities.v1alpha1.User user = 1;
+}
+
+message DeleteUserRequest {
+  string name = 1;
+}
+
+message DeleteUserResponse {
+}
